@@ -12,7 +12,7 @@ app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 app.use(express.static('public'));
 
-// Routes (html, api)
+// Custom routes (html index, notes api) middleware
 // __________________________________________
 app.use(routes, api);
 
