@@ -37,19 +37,38 @@ api.post('/api/notes', (req, res, next) => {
             console.log('You have successfully written the json file.');
         }
     });
-
 });
 
-// DELETE /api/notes/:id - Should recieve a query parameter containing the id of a note to delete. This means you'll need to find a way to give each note a unique id when it's saved. In order to delete a note, you'll need to read all notes from the db.json file, remove the note with the given id property, and then rewrite the notes to the db.json file.
 api.delete('/api/notes/:id', (req, res, next) => {
-    fs.readFile('./db/db.json', (err, data) => {
+    let resultsArr = db;
+    let id;
+
+    fs.readFile('./db/db.json', (err) => {
         if (err) throw err;
-        for (let i = 0; i < db.length; i++) {
-            id = req.params.id
-            db.splice(id, 1)
-            console.log(db)
-        }
-        fs.writeFile('./db/db.json', db, 'utf8', (err) => {
+
+        id = req.params.id;
+        resultsArr.splice(id, 1);
+
+        // NEED a way to make IDs match the splice in terms of unique IDs given AFTER deletion. 
+        // create for loop
+        // hook up req.params.id
+        // match the req.params element with initial ID given
+        // splice the element
+        // but you're not done yet,
+        // go into each object thereafter to access ID property
+            // re-count from that point forth and assign new ID. 
+        // Could this present a problem if and when a user deletes TWO notes?
+            // Now that I'm thinking about it, no. It shouldn't. 
+            
+            
+        // for (let i = 0; i < db.length; i++) {
+        // }
+
+        console.log(id);
+        console.log(resultsArr);
+        const json = JSON.stringify(resultsArr, null, 2);
+
+        fs.writeFile('./db/db.json', json, 'utf8', (err) => {
             if (err) {
                 console.log(err);
             } else {
