@@ -46,26 +46,17 @@ api.delete('/api/notes/:id', (req, res, next) => {
     fs.readFile('./db/db.json', (err) => {
         if (err) throw err;
 
-        id = req.params.id;
+        id = parseInt(req.params.id);
+
+
+        // for loop iterates over array to assign unique id after note is deleted
+        for (let i = id; i < db.length; i++) {
+            resultsArr[i].id -= 1;
+            console.log(resultsArr)
+        }
+
         resultsArr.splice(id, 1);
-
-        // NEED a way to make IDs match the splice in terms of unique IDs given AFTER deletion. 
-        // create for loop
-        // hook up req.params.id
-        // match the req.params element with initial ID given
-        // splice the element
-        // but you're not done yet,
-        // go into each object thereafter to access ID property
-            // re-count from that point forth and assign new ID. 
-        // Could this present a problem if and when a user deletes TWO notes?
-            // Now that I'm thinking about it, no. It shouldn't. 
-            
-            
-        // for (let i = 0; i < db.length; i++) {
-        // }
-
-        console.log(id);
-        console.log(resultsArr);
+        console.log(resultsArr)
         const json = JSON.stringify(resultsArr, null, 2);
 
         fs.writeFile('./db/db.json', json, 'utf8', (err) => {
