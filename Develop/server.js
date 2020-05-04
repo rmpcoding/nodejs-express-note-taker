@@ -22,11 +22,12 @@ const staticListen = (req, res) => {
     }).resume();
 }
 
+staticListen();
+
 // Custom routes (html index, notes api) middleware
 // __________________________________________
 app.use(routes, api);
 
 app.listen(PORT, () => {
-    staticListen;
     console.log(`🌎 Server is listening on ${PORT}`);
 });
