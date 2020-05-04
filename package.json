@@ -12,6 +12,7 @@
     "nodemon": "^2.0.3"
   },
   "scripts": {
+    "postinstall": "cd Develop && npm install",
     "start": "node Develop/server.js",
     "devStart": "nodemon Develop/server.js"
   },
