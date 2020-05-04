@@ -12,7 +12,7 @@
   },
   "scripts": {
     "postinstall": "cd Develop && npm install",
-    "start": "node Develop/server.js",
+    "start": "nodemon Develop/server.js",
     "devStart": "nodemon Develop/server.js"
   },
   "repository": {
