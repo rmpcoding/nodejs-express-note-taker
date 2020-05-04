@@ -1,50 +1,41 @@
 const express = require('express');
 const db = require('../db/db.json');
 const fs = require('fs');
+const path = require('path');
 
 const api = express.Router();
-const app = express();
-
 
 const writeFile = (data) => {
     fs.writeFile('./db/db.json', data, 'utf8', (err) => {
-        if (err) {
-            console.log(err);
-        } else {
-            console.log('You have successfully written the json file.');
-        }
+        if (err) throw err;
+        console.log('You have successfully written the json file.');
     });
 };
 
-
 api.get('/api/notes', (req, res, next) => {
-    res.json(db);
+    return res.sendFile(path.join(__dirname, "../db/db.json"));
 });
 
 api.post('/api/notes', (req, res, next) => {
-    let resultsArr = [];
-    let note;
-    let id;
+    let resultsArr = db;
+    let note = req.body;
 
     for (let i = 0; i < 1; i++) {
         if (db[i]) {
-            resultsArr = db;
-            id = db[db.length - 1].id;
+            let id = db[db.length - 1].id;
             id += 1;
             req.body.id = id;
-            note = req.body;
             resultsArr.push(note);
         } else {
             req.body.id = 0;
-            note = req.body;
             resultsArr.push(note);
         }
     }
 
     const json = JSON.stringify(resultsArr, null, 2);
-    console.log('before')
     writeFile(json);
-    console.log('after')
+    
+    res.json(json);
 });
 
 api.delete('/api/notes/:id', (req, res, next) => {
@@ -56,20 +47,17 @@ api.delete('/api/notes/:id', (req, res, next) => {
 
         id = parseInt(req.params.id);
 
-        // for loop iterates over array to assign unique id after note is deleted
+        // for loop starts at index of requested delete note, and it iterates over the rest of the array to assign a unique id to each note thereafter
         for (let i = id; i < db.length; i++) {
             resultsArr[i].id -= 1;
         }
 
         resultsArr.splice(id, 1);
         const json = JSON.stringify(resultsArr, null, 2);
-
-        console.log('before');
         writeFile(json);
-        console.log('after');
+
+        res.json(true);
     });
 });
 
 module.exports = api;
-
-// Figure out what's keeping the notes from appearing/disappearing before page refresh
