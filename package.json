@@ -2,7 +2,7 @@
   "name": "nodejs-express-note-taker",
   "version": "1.0.0",
   "description": "",
-  "main": "server.js",
+  "main": "./Develop/server.js",
   "scripts": {
     "postinstall": "cd Develop && npm install"
   },
