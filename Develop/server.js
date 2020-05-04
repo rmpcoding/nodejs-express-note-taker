@@ -1,6 +1,7 @@
 const express = require('express');
 const routes = require('./routes/index');
 const api = require('./routes/notes');
+const static = require('node-static');
 
 const app = express();
 
@@ -12,10 +13,20 @@ app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 app.use(express.static('public'));
 
+// Static CSS for deployment
+const file = new static.Server('./public');
+
+const staticListen = (req, res) => {
+    req.addListener('end', function() {
+        file.serve(req, res);
+    }).resume();
+}
+
 // Custom routes (html index, notes api) middleware
 // __________________________________________
 app.use(routes, api);
 
 app.listen(PORT, () => {
+    staticListen;
     console.log(`🌎 Server is listening on ${PORT}`);
 });
