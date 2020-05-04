@@ -1,0 +1,29 @@
+{
+  "name": "nodejs-express-note-taker",
+  "version": "1.0.0",
+  "description": "## Simple note taker app that which utilizes NodeJS and Express for backend functionality",
+  "main": "server.js",
+  "dependencies": {
+    "express": "^4.16.4",
+    "mysql": "^2.16.0",
+    "node-static": "^0.7.11"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.3"
+  },
+  "scripts": {
+    "start": "node Develop/server.js",
+    "devStart": "nodemon Develop/server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/rmpcoding/nodejs-express-note-taker.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/rmpcoding/nodejs-express-note-taker/issues"
+  },
+  "homepage": "https://github.com/rmpcoding/nodejs-express-note-taker#readme"
+}
