@@ -4,7 +4,6 @@
   "description": "",
   "main": "server.js",
   "scripts": {
-
     "start": "node Develop/server.js",
     "devStart": "nodemon Develop/server.js"
   },
@@ -20,7 +19,8 @@
   },
   "dependencies": {
     "express": "^4.16.4",
-    "mysql": "^2.16.0"
+    "mysql": "^2.16.0",
+    "node-static": "^0.7.11"
   },
   "devDependencies": {
     "nodemon": "^2.0.3"
