@@ -4,7 +4,7 @@
   "description": "",
   "main": "server.js",
   "scripts": {
-    "postinstall": "cd Develop/server.js && npm install"
+    "postinstall": "cd Develop && npm install"
   },
   "repository": {
     "type": "git",
