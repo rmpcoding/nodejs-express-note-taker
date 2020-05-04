@@ -5,8 +5,8 @@
   "main": "server.js",
   "scripts": {
     "postinstall": "cd Develop && npm install",
-    "start": "node server.js",
-    "devStart": "nodemon server.js"
+    "start": "node Develop/server.js",
+    "devStart": "nodemon Develop/server.js"
   },
   "repository": {
     "type": "git",
